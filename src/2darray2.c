@@ -6,11 +6,14 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:26:14 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/12 17:10:19 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/12 17:48:21 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+// duplicating our matrix via usage of stringduplicate
+// freeing the output
 
 char    **matrix_duplicate(char **array)
 {
@@ -37,6 +40,8 @@ char    **matrix_duplicate(char **array)
 	return (output);
 }
 
+//freeing the matrix 
+
 void	free_matrix(char ***array)
 {
 	int	i;
@@ -53,6 +58,12 @@ void	free_matrix(char ***array)
 		*array = NULL;
 	}
 }
+
+// using calloc to allocate memory for our 2darray
+// replacing a line in the matrix/2darray (not necessarily end or beginning
+// of the array) if the arrangement changes
+// using strdup to duplicate the string according to the changes
+// freeing our char high at the end to then return the pointer
 
 char	**replace_matrixline(char ***high, char **low, int c)
 {
