@@ -3,17 +3,18 @@
 
 NAME		:= minishell
 
-CPPFLAGS	= -I $(HOME)/.brew/opt/readline/include
-CFLAGS		= $(CPPFLAGS) -Wall -Werror -Wextra -g -fsanitize=address
+COMPILER	= cc
+CFLAGS		= -Wall -Werror -Wextra -g -fsanitize=address
 
 LIBFT_DIR	= ./libft/
 LIBFT_EXEC	= libft/libft.a
 LIB_INC		= -I ./includes/libft
+LIBS		= -lreadline
 
 # **************************************************************************** #
 # SOURCES
 
-SRC_FILES	:= 
+SRC_FILES	:= 2darray.c 2darray2.c
 
 OBJ_FILES	:= ${SRC_FILES:.c=.o}
 SRC			:= $(addprefix $(SRC_DIR), $(SRC_FILES))
@@ -32,6 +33,11 @@ END_COLOR	:= \033[0;39m
 
 # **************************************************************************** #
 # RULES
+
+all: $(NAME)
+
+$(NAME): $(OBJ_FILES) $(LIBS)
+	$(COMPILER) $(CFLAGS) $(LIBFT_EXEC)
 
 clean: 
 	$(RM) $(OBJ)
