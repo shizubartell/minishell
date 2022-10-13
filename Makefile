@@ -14,7 +14,7 @@ LIBS		= -lreadline
 # **************************************************************************** #
 # SOURCES
 
-SRC_FILES	:= 2darray.c 2darray2.c
+SRC_FILES	:= main.c 2darray.c 2darray2.c
 
 OBJ_FILES	:= ${SRC_FILES:.c=.o}
 SRC			:= $(addprefix $(SRC_DIR), $(SRC_FILES))
