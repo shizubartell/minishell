@@ -1,55 +1,48 @@
-# **************************************************************************** #
-# MAKEFILE
+NAME = minishell
 
-NAME		:= minishell
+LIBFT = libft/libft.a
 
-COMPILER	= cc
-CFLAGS		= -Wall -Werror -Wextra -g -fsanitize=address
+INC = includes
+LIBFT = libft/libft.a 
+SRCS = src/main c. \
+		src/2darray.c \
+		src/2darray2.c \
+		src/commandtrim.c \
+		src/initialise_prompt.c \
+		src/signal.c
 
-LIBFT_DIR	= ./libft/
-LIBFT_EXEC	= libft/libft.a
-LIB_INC		= -I ./includes/libft
-LIBS		= -lreadline
+OBJS = $(SRCS:.c=.o)
 
-# **************************************************************************** #
-# SOURCES
-
-SRC_FILES	:= main.c 2darray.c 2darray2.c signal.c \
-				initialise_prompt.c commandtrim.c 
-
-OBJ_FILES	:= ${SRC_FILES:.c=.o}
-SRC			:= $(addprefix $(SRC_DIR), $(SRC_FILES))
-OBJ			:= $(addprefix $(OBJ_DIR), $(OBJ_FILES))
+CFLAGS = -Wall -Wextra
+RM =  rm -rf
 
 
-# **************************************************************************** #
-# COLORS
+UNAME := $(shell uname -s)
 
-RED			:= \033[0;31m
-GREEN		:= \033[0;92m
-YELLOW		:= \033[0;93m
-BLUE		:= \033[0;94m
-END_COLOR	:= \033[0;39m
+ifeq ($(UNAME) , Linux)
+	INCDIR := -L/usr/local/lib -I/usr/local/include 
 
+else
+	INCDIR := -I ~/goinfre/.brew/opt/readline/include -L ~/goinfre/.brew/opt/readline/lib
+endif
 
-# **************************************************************************** #
-# RULES
+all : $(NAME)
 
-all: $(NAME)
+$(NAME) : $(OBJS) $(LIBFT)
+		$(CC) $(CFLAGS) -lreadline -lncurses $^ -o $(NAME)  -I $(INCDIR) -lreadline
 
-$(NAME): $(OBJ_FILES) $(LIBS)
-	$(COMPILER) $(CFLAGS) $(LIBFT_EXEC)
+%.o:%.c $(INC)/minishell.h
+	$(CC) $(CFLAGS) -I $(INC) -c $< -o $@ -I $(INCDIR) -lreadline
 
-clean: 
-	$(RM) $(OBJ)
-	make clean -C $(LIBFT_DIR)
-
-fclean: clean
+$(LIBFT):
+	make bonus -C libft
+clean :
+	$(RM) $(OBJS)
+	make clean -C libft
+fclean : clean
 	$(RM) $(NAME)
-	$(RM) $(OBJ_DIR)
-	make fclean -C $(LIBFT_DIR)
+	make fclean -C libft
+re : fclean all
 
-re: fclean all
-	echo "$(RED)Cleaned up all files for $(NAME)!"
-
-.PHONY:		all clean fclean re
+run : $(NAME)
+	./$(NAME)

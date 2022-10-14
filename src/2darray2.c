@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:26:14 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/12 17:48:21 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:10:22 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	**replace_matrixline(char ***high, char **low, int c)
 		else
 		{
 			while (low && low[++i[1]])
-				add[++i[2]] = ft_strdup(low[0][i[1]]);
+				add[++i[2]] = ft_strdup(low[i[1]]);
 		}
 	}	
 	free_matrix(high);

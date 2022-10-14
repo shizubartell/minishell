@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:54:41 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/14 10:38:13 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:42:10 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_prompt
 //*********************************************************//
 //**                MAIN.C                              **//
 
-int startup(char **path);
+int				main(int argc, char **argv, char **envp);
 
 //*********************************************************//
 //**                2DARRAY.C                           **//
@@ -72,7 +72,7 @@ char            **replace_matrixline(char ***high, char **low, int c);
 //*********************************************************//
 //**                SIGNAL.C                            **//
 
-int				signalhandler(int sig);
+void			handle_sigint(int sig);
 
 //*********************************************************//
 //**                INITIALISE_PROMPT.C                  **//

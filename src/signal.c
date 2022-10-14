@@ -6,11 +6,11 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:38:27 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/13 13:52:13 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:49:50 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <../inc/minishell.h>
+#include "../inc/minishell.h"
 
 // handling our signals for the terminal input
 // ioctl is a direct command that makes it possible to
@@ -24,11 +24,11 @@
 // status = 128 + SIGINT => simplified representation of exit status after
 // the last input died of SIGINT
 
-int     signalhandler(int sig)
+void    handle_sigint(int sig)
 {
     if (sig == SIGINT)
     {
-        status = (128 + SIGINT);
+        status = 130;
         ioctl(STDIN_FILENO, TIOCSTI, "\n");
         rl_replace_line("", 0);
         rl_on_new_line();

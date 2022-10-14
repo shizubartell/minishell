@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 10:54:36 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/14 11:11:08 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/14 11:20:11 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 //one main function to use count_input and fill_2darray for splitting up
 //the terminal input for future parsing
 
+//counting the
 static int  count_input(const char *s, char *c, int av[2])
 {
     int     i[2];

@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:49:37 by iczarnie          #+#    #+#             */
-/*   Updated: 2022/10/14 10:43:59 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:12:23 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,20 +101,20 @@ t_prompt initialise_prompt(char **argv, char **envp)
 //that characters index
 int strchr_int(const char *s, int c)
 {
-    unsigned int 	c;
+    unsigned int 	c_ui;
     int				i;
 
 	i = 0;
-	c = (unsigned char)c;
+	c_ui = (unsigned char)c;
 	if (!s)
 		return (-1);
 	while (s[i] != '\0')
 	{
-		if (s[i] == c)
+		if (s[i] == c_ui)
 			return (i);
 		i++;
 	}
-	if (c == '\0')
+	if (c_ui == '\0')
 		return (i);
 	return (-1);
 }
