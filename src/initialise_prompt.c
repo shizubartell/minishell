@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:49:37 by iczarnie          #+#    #+#             */
-/*   Updated: 2022/10/14 13:12:23 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:39:28 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ static t_prompt initialise_values(t_prompt prompt, char **argv)
     str = getcwd(NULL, 0);
     prompt.envp = set_env_value("PWD", str, prompt.envp, 3);
     free (str);
-    str = mini_getenv("PATH", prompt.envp, 4);
+    str = get_env_value("PATH", prompt.envp, 4);
 	if (!str)
-		prompt.envp = mini_setenv("PATH", \
+		prompt.envp = set_env_value("PATH", \
 		"/usr/local/sbin:/usr/local/bin:/usr/bin:/bin", prompt.envp, 4);
 	free(str);
     str = get_env_value("SHLVL", prompt.envp, 5);

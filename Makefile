@@ -4,10 +4,9 @@ LIBFT = libft/libft.a
 
 INC = includes
 LIBFT = libft/libft.a 
-SRCS = src/main c. \
+SRCS = src/main.c \
 		src/2darray.c \
 		src/2darray2.c \
-		src/commandtrim.c \
 		src/initialise_prompt.c \
 		src/signal.c
 
@@ -29,7 +28,7 @@ endif
 all : $(NAME)
 
 $(NAME) : $(OBJS) $(LIBFT)
-		$(CC) $(CFLAGS) -lreadline -lncurses $^ -o $(NAME)  -I $(INCDIR) -lreadline
+		$(CC) $(CFLAGS) -lreadline -lncurses $^ -o $(NAME)  -I $(INCDIR) -lreadline -fsanitize=address
 
 %.o:%.c $(INC)/minishell.h
 	$(CC) $(CFLAGS) -I $(INC) -c $< -o $@ -I $(INCDIR) -lreadline
