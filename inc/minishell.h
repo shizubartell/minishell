@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:54:41 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/13 13:57:37 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/14 10:38:13 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ int				signalhandler(int sig);
 t_prompt        initialise_prompt(char **argv, char **envp);
 char            **set_env_value(char *var, char *value, char **envp, int n);
 char            *get_env_value(char *var, char **envp, int n);
+int				strchr_int(const char *s, int c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:49:37 by iczarnie          #+#    #+#             */
-/*   Updated: 2022/10/13 14:00:45 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/14 10:43:59 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char **set_env_value(char *var, char *value, char **envp, int n)
     free(temp[0]);
     while (!ft_strchr(var, '=') && envp && envp[++i[0]])
 	{
-		i[1] = ft_strchr_i(envp[i[0]], '=');
+		i[1] = strchr_int(envp[i[0]], '=');
 		if (!ft_strncmp(envp[i[0]], var, i[1]))
 		{
 			temp[0] = envp[i[0]];
@@ -94,4 +94,27 @@ t_prompt initialise_prompt(char **argv, char **envp)
     prompt.envp = matrix_duplicate(envp);
     prompt = initialise_values(prompt, argv);
     return(prompt);
+}
+
+//compared to our strchr this functions looks for a
+//specific character inside a given string and returns
+//that characters index
+int strchr_int(const char *s, int c)
+{
+    unsigned int 	c;
+    int				i;
+
+	i = 0;
+	c = (unsigned char)c;
+	if (!s)
+		return (-1);
+	while (s[i] != '\0')
+	{
+		if (s[i] == c)
+			return (i);
+		i++;
+	}
+	if (c == '\0')
+		return (i);
+	return (-1);
 }
