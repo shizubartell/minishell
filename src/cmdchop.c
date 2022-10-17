@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   commandtrim.c                                      :+:      :+:    :+:   */
+/*   cmdchop.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 10:54:36 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/16 17:16:09 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/17 10:24:30 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ static int  count_input(const char *s, char *c, int av[2])
 
     i[0] = 0;
     i[1] = 0;
-    while (s[i[0]] != '\0')
+    while (s[av[0]] != '\0')
     {
-        if (!ft_strchr(c, s[i[0]]))
+        if (!ft_strchr(c, s[av[0]]))
         {
             av[1]++;
-            while ((!ft_strchr(c, s[av[0]]) || i[0] && s[i[0]] != '\0'))
+            while ((!ft_strchr(c, s[av[0]]) || i[0]) && s[av[0]] != '\0')
             {
-                if (!i[1] && (s[i[0]] == '\"' || s[i[0]] == '\''))
-                    i[1] = s[i[0]];
+                if (!i[1] && (s[av[0]] == '\"' || s[av[0]] == '\''))
+                    i[1] = s[av[0]];
                 i[0] = (i[0] + (s[av[0]] == i[1])) % 2;
                 i[1] *= i[0] != 0;
                 av[0]++; 
@@ -64,16 +64,16 @@ static char **fill_2darray(char **add, char const *s, char *set, int av[3])
     i[0] = 0;
     i[1] = 0;
     len = ft_strlen(s);
-    while (s[i[0]])
+    while (s[av[0]])
     {
-        while (ft_strchr(set, s[i[0]]) && s[i[0]] != '\0')
+        while (ft_strchr(set, s[av[0]]) && s[av[0]] != '\0')
             av[0]++;
         av[1] = av[0];
-        while ((!ft_strchr(set, s[av[0]]) || i[0] || i[1] && s[av[0]]))
+        while ((!ft_strchr(set, s[av[0]]) || i[0] || i[1]) && s[av[0]])
         {
-            i[0] = (i[0] + (!i[1] && s[i[0]] == '\'')) % 2;
-            i[1] = (i[1] + (!i[0] && s[i[0] ]== '\"')) % 2;
-            i[0]++;
+            i[0] = (i[0] + (!i[1] && s[av[0]] == '\'')) % 2;
+            i[1] = (i[1] + (!i[0] && s[av[0] ]== '\"')) % 2;
+            av[0]++;
         }
         if (av[1] >= len)
             add[av[2]++] = "\0";
