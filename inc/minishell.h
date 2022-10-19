@@ -44,6 +44,14 @@ typedef struct s_prompt
 	pid_t	pid;
 }			t_prompt;
 
+typedef struct s_node
+{
+	int		inputfile;
+	int		outputfile;
+    char	**full_cmd;
+	char	*full_path;
+}			t_node;
+
 //*********************************************************//
 //**                FUNCTIONS                           **//
 //*******************************************************//
@@ -92,5 +100,11 @@ char			*expanding_vars(char *str, int i, int qs[2], t_prompt *get);
 //**                TRIMMING_FOR_NODES.C                **//
 
 char			*trim_argument(char const *arg, int squotes, int dquotes);
+
+//*********************************************************//
+//**                NODE_HELPER.C                       **//
+t_node			*initialise_node(void);
+t_list			*stop_fill(t_list *cmds, char **args, char **temp);
+void			free_node(void *content);
 
 #endif

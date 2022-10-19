@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:26:14 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/14 13:10:22 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/18 11:03:50 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	free_matrix(char ***array)
 // using strdup to duplicate the string according to the changes
 // freeing our char high at the end to then return the pointer
 
+//replacing nth-line with another matrix
 char	**replace_matrixline(char ***high, char **low, int c)
 {
 	int i[3];

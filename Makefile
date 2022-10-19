@@ -8,7 +8,12 @@ SRCS = src/main.c \
 		src/2darray.c \
 		src/2darray2.c \
 		src/initialise_prompt.c \
-		src/signal.c
+		src/signal.c \
+		src/cmdchop.c \
+		src/expanding.c \
+		src/node_helper.c \
+		src/subcmdchop.c \
+		src/trimming_for_nodes.c
 
 OBJS = $(SRCS:.c=.o)
 

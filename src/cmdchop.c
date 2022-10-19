@@ -6,11 +6,11 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 10:54:36 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/17 10:24:30 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/19 15:01:16 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <../inc/minishell.h>
+#include "../inc/minishell.h"
 
 //needing one static function, called count_input, to iterate through the input
 //from the terminal (string) to count the amount of input commands
