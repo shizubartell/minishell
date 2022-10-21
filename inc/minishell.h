@@ -103,8 +103,16 @@ char			*trim_argument(char const *arg, int squotes, int dquotes);
 
 //*********************************************************//
 //**                NODE_HELPER.C                       **//
+
 t_node			*initialise_node(void);
 t_list			*stop_fill(t_list *cmds, char **args, char **temp);
 void			free_node(void *content);
+
+//*********************************************************//
+//**                PWDECHOEXIT.C                       **//
+
+int				exitpath(t_list *cmd, int *ex);
+int				pwdpath(void);
+int				echopath(t_list *cmd);
 
 #endif

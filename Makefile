@@ -14,6 +14,7 @@ SRCS = src/main.c \
 		src/node_helper.c \
 		src/subcmdchop.c \
 		src/trimming_for_nodes.c
+		src/pwdechoexit.c
 
 OBJS = $(SRCS:.c=.o)
 
