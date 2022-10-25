@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:10:30 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/12 17:36:12 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/25 17:24:26 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int matrixlength(char **array)
 // leaks after its != to our output and also at the 
 // of receiving our output we are freeing the inputä
 
+// Adds new row to matrix
 char    **addrowmatrix(char **input, char *str)
 {
     char	**output;

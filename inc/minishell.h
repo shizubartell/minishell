@@ -28,6 +28,7 @@
 # include <string.h>
 # include <signal.h>
 # include <fcntl.h>
+# include <dirent.h>
 
 //*********************************************************//
 //**                GLOBAL VARIABLE                     **//
@@ -51,6 +52,13 @@ typedef struct s_node
     char	**full_cmd;
 	char	*full_path;
 }			t_node;
+
+enum	error_msg
+{
+	NODIR = 1,
+	NOT_DIR = 2,
+	NOPERM = 3,
+};
 
 //*********************************************************//
 //**                FUNCTIONS                           **//
@@ -114,5 +122,20 @@ void			free_node(void *content);
 int				exitpath(t_list *cmd, int *ex);
 int				pwdpath(void);
 int				echopath(t_list *cmd);
+
+//*********************************************************//
+//**                CDERROR.C                           **//
+
+int				cding(t_prompt *path);
+void			cdingerror(char **str[2]);
+void			*errormsg(int type, char *var, int error);
+
+//*********************************************************//
+//**                REDIRECTIONS.C                      **//
+
+void			error_in_redirections(int *i, int file_descriptor);
+t_node			*get_outfile1(t_node *node, char **args, int *i);
+t_node			*get_outfile2(t_node *node, char **args, int *i);
+t_node			*get_infile1(t_node *node, char **args, int *i);
 
 #endif

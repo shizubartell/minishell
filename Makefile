@@ -13,8 +13,10 @@ SRCS = src/main.c \
 		src/expanding.c \
 		src/node_helper.c \
 		src/subcmdchop.c \
-		src/trimming_for_nodes.c
-		src/pwdechoexit.c
+		src/trimming_for_nodes.c \
+		src/pwdechoexit.c \
+		src/cderror.c \
+		src/redirections.c
 
 OBJS = $(SRCS:.c=.o)
 
