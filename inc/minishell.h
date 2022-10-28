@@ -30,6 +30,9 @@
 # include <fcntl.h>
 # include <dirent.h>
 
+# define READ_END 0
+# define WRITE_END 1
+
 //*********************************************************//
 //**                GLOBAL VARIABLE                     **//
 
@@ -58,6 +61,8 @@ enum	error_msg
 	NODIR = 1,
 	NOT_DIR = 2,
 	NOPERM = 3,
+	DUPFAIL = 4,
+	FORKFAIL = 5,
 };
 
 //*********************************************************//
@@ -137,5 +142,13 @@ void			error_in_redirections(int *i, int file_descriptor);
 t_node			*get_outfile1(t_node *node, char **args, int *i);
 t_node			*get_outfile2(t_node *node, char **args, int *i);
 t_node			*get_infile1(t_node *node, char **args, int *i);
+
+//*********************************************************//
+//**                EXECUTION.C                         **//
+
+void			child_builtins(t_prompt *prompt, t_node *n, int i, t_list *cmd);
+void			*child_proc(t_prompt *s_prompt, t_list *cmd, int fd[2]);
+void			fork_execution(t_prompt *prompt, t_list *cmd, int fd[2]);
+void			*fork_checker(t_prompt *prompt, t_list *cmd, int fd[2]);
 
 #endif

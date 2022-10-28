@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:14:53 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/25 18:31:11 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/27 10:41:36 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,14 @@ void	*errormsg(int type, char *var, int error)
 	status = error;
 	if (type == NODIR)
 		ft_putstr_fd("minishell: No such file or directoy: ", 2);
-	else if (type == NOT_DIR)
+	if (type == NOT_DIR)
 		ft_putstr_fd("minishell: Not a directory: ", 2);
+	if (type == NOPERM)
+		ft_putstr_fd("minishell: Permission denied: ", 2);
+	if (type == DUPFAIL)
+		ft_putstr_fd("minishell: dup2 failed\n", 2);
+	else if (type == FORKFAIL)
+		ft_putstr_fd("minishell: fork failed\n", 2);
 	ft_putendl_fd(var, 2);
 	return(NULL);
 }
