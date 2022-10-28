@@ -151,4 +151,9 @@ void			*child_proc(t_prompt *s_prompt, t_list *cmd, int fd[2]);
 void			fork_execution(t_prompt *prompt, t_list *cmd, int fd[2]);
 void			*fork_checker(t_prompt *prompt, t_list *cmd, int fd[2]);
 
+//*********************************************************//
+//**                BUILTINS.C                          **//
+
+int				builtins(t_node *node);
+
 #endif

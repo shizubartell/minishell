@@ -6,13 +6,9 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 19:18:41 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/28 08:35:21 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/28 09:55:07 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//BUILTINS FUNCTION IS STILL MISSING
-//NEED TO WRITE
-//CHECKING IF THE FIRST CMD IS A BUILTIN
 
 #include "../inc/minishell.h"
 
@@ -46,7 +42,7 @@ static void	*child_redirection(t_list *cmd, int fd[2])
 void	child_builtins(t_prompt *prompt, t_node *n, int i, t_list *cmd)
 {
 	signal(SIGINT, SIG_IGN);
-	singal(SIGQUIT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	if (!builtins(n) && n->full_cmd)
 		execve(n->full_path, n->full_cmd, prompt->envp);
 	else if (builtins(n) && n->full_cmd && \
@@ -83,7 +79,7 @@ void	fork_execution(t_prompt *prompt, t_list *cmd, int fd[2])
 {
 	pid_t	pid;
 
-	pid = ford();
+	pid = fork();
 	if (pid < 0)
 	{
 		close(fd[READ_END]);

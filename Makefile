@@ -16,7 +16,9 @@ SRCS = src/main.c \
 		src/trimming_for_nodes.c \
 		src/pwdechoexit.c \
 		src/cderror.c \
-		src/redirections.c
+		src/redirections.c \
+		src/execution.c \
+		src/builtins.c
 
 OBJS = $(SRCS:.c=.o)
 
