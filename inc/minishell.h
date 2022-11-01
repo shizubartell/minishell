@@ -65,6 +65,8 @@ enum	error_msg
 	NOPERM = 3,
 	DUPFAIL = 4,
 	FORKFAIL = 5,
+	NOCMD = 6,
+	IS_DIR = 7,
 	PIPERR = 9,
 	PIPENDERR = 10
 };
@@ -163,6 +165,14 @@ void			*fork_checker(t_prompt *prompt, t_list *cmd, int fd[2]);
 int				builtins(t_node *node);
 
 //*********************************************************//
-//**                BUILTINS.C                          **//
+//**                HEREDOC.C                           **//
+
 t_node			*get_infile2(t_node *node, char **args, int *i);
+
+//*********************************************************//
+//**                PULLCMD.C                           **//
+
+void	get_cmd(t_prompt *prompt, t_list *cmd, char **s, char *path);
+void	*ex_nocmd(t_prompt *prompt, t_list *cmd);
+
 #endif

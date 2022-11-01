@@ -19,7 +19,8 @@ SRCS = src/main.c \
 		src/redirections.c \
 		src/execution.c \
 		src/builtins.c \
-		src/heredoc.c
+		src/heredoc.c \
+		src/pullcmd.c
 
 OBJS = $(SRCS:.c=.o)
 

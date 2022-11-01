@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cderror.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iczarnie <iczarnie@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:14:53 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/28 17:11:44 by iczarnie         ###   ########.fr       */
+/*   Updated: 2022/11/01 11:45:00 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,18 @@ void	*errormsg(int type, char *var, int error)
 	status = error;
 	if (type == NODIR)
 		ft_putstr_fd("minishell: No such file or directoy: ", 2);
-	if (type == NOT_DIR)
+	else if (type == NOT_DIR)
 		ft_putstr_fd("minishell: Not a directory: ", 2);
-	if (type == NOPERM)
+	else if (type == NOPERM)
 		ft_putstr_fd("minishell: Permission denied: ", 2);
-	if (type == DUPFAIL)
+	else if (type == DUPFAIL)
 		ft_putstr_fd("minishell: dup2 failed\n", 2);
 	else if (type == FORKFAIL)
 		ft_putstr_fd("minishell: fork failed\n", 2);
+	else if (type == NOCMD)
+		ft_putstr_fd("minishell: command not found: ", 2);
+	else if (type == IS_DIR)
+		ft_putstr_fd("minishell: Is a directory: ", 2);
 	else if (type == PIPENDERR)
 		ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
 	else if (type == PIPERR)

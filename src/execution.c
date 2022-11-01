@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 19:18:41 by abartell          #+#    #+#             */
-/*   Updated: 2022/11/01 11:22:16 by iczarnie         ###   ########.fr       */
+/*   Updated: 2022/11/01 11:50:17 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void	fork_execution(t_prompt *prompt, t_list *cmd, int fd[2])
 		child_proc(prompt, cmd, fd);
 }
 
+//checks if the conditions to
+//perform a fork are met or not
 void	*fork_checker(t_prompt *prompt, t_list *cmd, int fd[2])
 {
 	t_node	*n;
