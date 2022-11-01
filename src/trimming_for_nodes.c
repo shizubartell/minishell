@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   trimming_for_nodes.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iczarnie <iczarnie@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 10:44:00 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/19 15:03:16 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/28 17:06:39 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
 //goes through all args to get each of them trimmed
-static char **args_trimming(char **args)
+char **args_trimming(char **args)
 {
     int     i;
     char    **temp_args;

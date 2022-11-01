@@ -47,3 +47,56 @@ void	free_node(void *content)
 	free(node->full_path);
 	free(node);
 }
+
+static t_node	*choose_redirection(t_node *node, char **trimmed, int *i, char **args)
+{
+	if (trimmed[*i])
+	{
+		if (args[*i][0] == '<' && args[*i + 1] && args[*i + 1][0] == '<')
+			node = get_infile2(node, trimmed, i);
+		else if (args[*i][0] == '<')
+			node = get_infile1(node, trimmed, i);
+		else if (args[*i][0] == '>' && args[*i + 1] && args[*i + 1][0] == '>')
+			node = get_outfile2(node, trimmed, i);
+		else if (args[*i][0] == '>')
+			node = get_outfile1(node, trimmed, i);
+		else if (args[*i][0] != '|')
+			node->full_cmd = addrowmatrix(node->full_cmd, trimmed[*i]);
+		else
+		{
+			errormsg(PIPENDERR, NULL, 2);
+			*i = -2;
+		}
+		return (node);
+	}
+	errormsg(PIPENDERR, NULL, 2);
+	*i = -2;
+	return (node);
+}
+
+t_list	*fill_nodes(char **args, int i)
+{
+	t_list	*cmds[2];
+	char	**trimmed;
+
+	cmds[0] = NULL;
+	trimmed = args_trimming(args);
+	while (args[++i])
+	{
+		cmds[1] = ft_lstlast(cmds[0]);
+		if (i == 0 || (args[i][0] == '|' && args[i + 1] && args[i + 1][0]))
+		{
+			i += args[i][0] == '|';
+			ft_lstadd_back(&cmds[0], ft_lstnew(initialise_node()));
+			cmds[1] = ft_lstlast(cmds[0]);
+		}
+		cmds[1]->content = choose_redirection(cmds[1]->content, trimmed, &i, args);
+		if (i < 0)
+			return (stop_fill(cmds[0], args, trimmed));
+		if (!args[i])
+			break ;
+	}
+	free_matrix(&trimmed);
+	free_matrix(&args);
+	return (cmds[0]);
+}

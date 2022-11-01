@@ -18,7 +18,8 @@ SRCS = src/main.c \
 		src/cderror.c \
 		src/redirections.c \
 		src/execution.c \
-		src/builtins.c
+		src/builtins.c \
+		src/heredoc.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -28,17 +29,21 @@ RM =  rm -rf
 
 UNAME := $(shell uname -s)
 
-ifeq ($(UNAME) , Linux)
-	INCDIR := -L/usr/local/lib -I/usr/local/include 
+# ifeq ($(UNAME) , Linux)
+# 	INCDIR := -L/usr/local/lib -I/usr/local/include 
 
-else
-	INCDIR := -I ~/goinfre/.brew/opt/readline/include -L ~/goinfre/.brew/opt/readline/lib
-endif
+# else
+# 	INCDIR := -I ~/goinfre/.brew/opt/readline/include -L ~/goinfre/.brew/opt/readline/lib
+# endif
+
+$(NAME): $(OBJS)
+		make -C libft
+		$(CC) $(OBJS) -Llibft -lft -I ~/goinfre/.brew/opt/readline/include/ -L ~/goinfre/.brew/opt/readline/lib/ -lreadline -o $(NAME)
 
 all : $(NAME)
 
-$(NAME) : $(OBJS) $(LIBFT)
-		$(CC) $(CFLAGS) -lreadline -lncurses $^ -o $(NAME)  -I $(INCDIR) -lreadline -fsanitize=address
+# $(NAME) : $(OBJS) $(LIBFT)
+# 		$(CC) $(CFLAGS) -lreadline -lncurses $^ -o $(NAME)  -I $(INCDIR) -lreadline -fsanitize=address
 
 %.o:%.c $(INC)/minishell.h
 	$(CC) $(CFLAGS) -I $(INC) -c $< -o $@ -I $(INCDIR) -lreadline

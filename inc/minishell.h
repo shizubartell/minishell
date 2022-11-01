@@ -17,8 +17,8 @@
 //**                INCLUDES                            **//
 
 # include "../libft/libft.h"
-# include <readline/readline.h>
-# include <readline/history.h>
+// # include <readline/readline.h>
+// # include <readline/history.h>
 # include <sys/wait.h>
 # include <sys/stat.h>
 # include <sys/ioctl.h>
@@ -29,6 +29,8 @@
 # include <signal.h>
 # include <fcntl.h>
 # include <dirent.h>
+# include "/Users/iczarnie/goinfre/.brew/Cellar/readline/8.2.1/include/readline/readline.h"
+# include "/Users/iczarnie/goinfre/.brew/Cellar/readline/8.2.1/include/readline/history.h"
 
 # define READ_END 0
 # define WRITE_END 1
@@ -63,6 +65,8 @@ enum	error_msg
 	NOPERM = 3,
 	DUPFAIL = 4,
 	FORKFAIL = 5,
+	PIPERR = 9,
+	PIPENDERR = 10
 };
 
 //*********************************************************//
@@ -113,6 +117,7 @@ char			*expanding_vars(char *str, int i, int qs[2], t_prompt *get);
 //**                TRIMMING_FOR_NODES.C                **//
 
 char			*trim_argument(char const *arg, int squotes, int dquotes);
+char			**args_trimming(char **args);
 
 //*********************************************************//
 //**                NODE_HELPER.C                       **//
@@ -120,6 +125,7 @@ char			*trim_argument(char const *arg, int squotes, int dquotes);
 t_node			*initialise_node(void);
 t_list			*stop_fill(t_list *cmds, char **args, char **temp);
 void			free_node(void *content);
+t_list			*fill_nodes(char **args, int i);
 
 //*********************************************************//
 //**                PWDECHOEXIT.C                       **//
@@ -156,4 +162,7 @@ void			*fork_checker(t_prompt *prompt, t_list *cmd, int fd[2]);
 
 int				builtins(t_node *node);
 
+//*********************************************************//
+//**                BUILTINS.C                          **//
+t_node			*get_infile2(t_node *node, char **args, int *i);
 #endif

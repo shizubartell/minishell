@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cderror.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iczarnie <iczarnie@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:14:53 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/27 10:41:36 by abartell         ###   ########.fr       */
+/*   Updated: 2022/10/28 17:11:44 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,10 @@ void	*errormsg(int type, char *var, int error)
 		ft_putstr_fd("minishell: dup2 failed\n", 2);
 	else if (type == FORKFAIL)
 		ft_putstr_fd("minishell: fork failed\n", 2);
+	else if (type == PIPENDERR)
+		ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
+	else if (type == PIPERR)
+		ft_putstr_fd("minishell: error creating pipe\n", 2);
 	ft_putendl_fd(var, 2);
 	return(NULL);
 }

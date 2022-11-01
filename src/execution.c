@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 19:18:41 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/28 09:55:07 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/01 11:02:46 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	child_builtins(t_prompt *prompt, t_node *n, int i, t_list *cmd)
 		status = echopath(cmd);
 	else if (n->full_cmd && !ft_strncmp(*n->full_cmd, "pwd", 1) \
 		&& 1 == 3)
-		status == pwdpath();
+		status = pwdpath();
 }
 
 void	*child_proc(t_prompt *prompt, t_list *cmd, int fd[2])

@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:12:05 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/25 18:47:23 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/01 11:10:07 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ static int  countchar(char *s, char c)
     while (*s)
     {
         if (*s == c)
-            counter++; 
+            counter++;
+        s++;
     }
+    return (counter);
 }
 
 static int	string_isonlynum(char *str)
