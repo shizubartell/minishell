@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:10:30 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/25 17:24:26 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/01 15:28:06 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 // iterating through the length of our 2d array
 // removed != '\0' for the while statement
 
-int matrixlength(char **array)
+int	matrixlength(char **array)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (array && array[i])
-        i++;
-    return (i);
+	i = 0;
+	while (array && array[i])
+		i++;
+	return (i);
 }
 
 // adding another row to the matrix so be able to
@@ -31,10 +31,10 @@ int matrixlength(char **array)
 // of receiving our output we are freeing the inputä
 
 // Adds new row to matrix
-char    **addrowmatrix(char **input, char *str)
+char	**addrowmatrix(char **input, char *str)
 {
-    char	**output;
-    int		row;
+	char	**output;
+	int		row;
 	int		i;
 
 	i = -1;
@@ -64,10 +64,10 @@ char    **addrowmatrix(char **input, char *str)
 // we are using strnl_to_fd to write to our fd with a string and \n
 // and otherwise if we dont go through the lines we use str_to_fd
 
-int		matrix_to_fd(char **array, int line, int fd)
+int	matrix_to_fd(char **array, int line, int fd)
 {
-	int i;
-	int adding;
+	int	i;
+	int	adding;
 
 	adding = 0;
 	i = 0;

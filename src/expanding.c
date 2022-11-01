@@ -6,15 +6,15 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:04:48 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/18 10:25:25 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/01 15:10:02 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static int string_chars(const char *s, char *batch)
+static int	string_chars(const char *s, char *batch)
 {
-    int	i;
+	int	i;
 
 	i = 0;
 	if (!s)
@@ -95,7 +95,6 @@ char	*expanding_vars(char *str, int i, int qs[2], t_prompt *get)
 {
 	qs[0] = 0;
 	qs[1] = 0;
-
 	while (str && str[++i])
 	{
 		qs[0] = (qs[0] + (!qs[1] && str[i] == '\'')) % 2;

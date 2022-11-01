@@ -6,17 +6,17 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 22:42:17 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/28 09:54:08 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/01 15:29:51 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
 //checks if the first element in full_cmd is a builtin
-int builtins(t_node *node)
+int	builtins(t_node *node)
 {
-    int i;
-	
+	int	i;
+
 	if (!node->full_cmd)
 		return (0);
 	if ((node->full_cmd && ft_strchr(*node->full_cmd, '/')) || \

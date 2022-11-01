@@ -20,7 +20,9 @@ SRCS = src/main.c \
 		src/execution.c \
 		src/builtins.c \
 		src/heredoc.c \
-		src/pullcmd.c
+		src/pullcmd.c \
+		src/parser.c \
+		src/export_unset.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -39,7 +41,7 @@ UNAME := $(shell uname -s)
 
 $(NAME): $(OBJS)
 		make -C libft
-		$(CC) $(OBJS) -Llibft -lft -I ~/goinfre/.brew/opt/readline/include/ -L ~/goinfre/.brew/opt/readline/lib/ -lreadline -o $(NAME)
+		$(CC) $(OBJS) -Llibft -lft -I ~/goinfre/.brew/opt/readline/include/ -L ~/goinfre/.brew/opt/readline/lib/ -lreadline -o $(NAME) -fsanitize=address
 
 all : $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 07:02:43 by abartell          #+#    #+#             */
-/*   Updated: 2022/11/01 12:41:40 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/01 14:29:21 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static DIR	*cmd_checker(t_prompt *prompt, t_list *cmd, char ***s, char *path)
 		free(path);
 		node->full_path = cmd_finder(*s, *node->full_cmd, node->full_path);
 		if (!node->full_path || !node->full_cmd[0] || !node->full_cmd[0][0])
-			errormsg(NOCMD, *n->full_cmd, 127);
+			errormsg(NOCMD, *node->full_cmd, 127);
 	}
 	return (dir);
 }
@@ -80,7 +80,7 @@ void	get_cmd(t_prompt *prompt, t_list *cmd, char **s, char *path)
 	node = cmd->content;
 	dir = cmd_checker(prompt, cmd, &s, path);
 	if (!builtins(node) && node && node->full_cmd && dir)
-		errormsg(IS_DIR, *n->full_cmd, 126);
+		errormsg(IS_DIR, *node->full_cmd, 126);
 	else if (!builtins(node) && node && node->full_path && \
 		access(node->full_path, F_OK) == -1)
 		errormsg(NODIR, node->full_path, 127);

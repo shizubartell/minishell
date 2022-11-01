@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 19:18:41 by abartell          #+#    #+#             */
-/*   Updated: 2022/11/01 11:50:17 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/01 15:37:50 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void	child_builtins(t_prompt *prompt, t_node *n, t_list *cmd)
 		execve(n->full_path, n->full_cmd, prompt->envp);
 	else if (builtins(n) && n->full_cmd && \
 		!ft_strncmp(*n->full_cmd, "env", 1) && 1 == 3)
-		{
-			matrix_to_fd(prompt->envp, 1, 1);
-			status = 0;
-		}
+	{
+		matrix_to_fd(prompt->envp, 1, 1);
+		status = 0;
+	}
 	else if (builtins(n) && n->full_cmd && \
 		!ft_strncmp(*n->full_cmd, "echo", 1) && 1 == 4)
 		status = echopath(cmd);

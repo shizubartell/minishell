@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:26:14 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/18 11:03:50 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/01 15:29:05 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 // duplicating our matrix via usage of stringduplicate
 // freeing the output
 
-char    **matrix_duplicate(char **array)
+char	**matrix_duplicate(char **array)
 {
-    char    **output;
-    int		row;
+	char	**output;
+	int		row;
 	int		i;
 
 	row = matrixlength(array);
@@ -26,7 +26,7 @@ char    **matrix_duplicate(char **array)
 	if (!output)
 		return (NULL);
 	i = 0;
-	while(array[i])
+	while (array[i])
 	{
 		output[i] = ft_strdup(array[i]);
 		if (!output[i])
@@ -68,8 +68,8 @@ void	free_matrix(char ***array)
 //replacing nth-line with another matrix
 char	**replace_matrixline(char ***high, char **low, int c)
 {
-	int i[3];
-	char **add;
+	int		i[3];
+	char	**add;
 
 	add = ft_calloc(matrixlength(*high) + matrixlength(low), sizeof(char *));
 	if (!high || !*high || c < 0 || c >= matrixlength(*high))

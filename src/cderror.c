@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:14:53 by abartell          #+#    #+#             */
-/*   Updated: 2022/11/01 11:45:00 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/01 15:30:57 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 //general command of "cd" like in bash
 //setting the env value differently according to
 //having to add a new row (cd) to our matrix or not
-int cding(t_prompt *path)
+int	cding(t_prompt *path)
 {
-    char	**str[2];
+	char	**str[2];
 	char	*add;
 
 	status = 0;
@@ -37,7 +37,7 @@ int cding(t_prompt *path)
 	free(add);
 	path->envp = set_env_value("PWD", str[1][2], path->envp, 3);
 	free_matrix(&str[1]);
-	return(status);
+	return (status);
 }
 
 //checks for errors and returns whether the
@@ -90,5 +90,5 @@ void	*errormsg(int type, char *var, int error)
 	else if (type == PIPERR)
 		ft_putstr_fd("minishell: error creating pipe\n", 2);
 	ft_putendl_fd(var, 2);
-	return(NULL);
+	return (NULL);
 }

@@ -19,7 +19,7 @@ t_node	*initialise_node(void)
 	node = malloc(sizeof(t_node));
 	if (!node)
 		return (NULL);
-    node->inputfile = STDIN_FILENO;
+	node->inputfile = STDIN_FILENO;
 	node->outputfile = STDOUT_FILENO;
 	node->full_cmd = NULL;
 	node->full_path = NULL;
@@ -39,7 +39,7 @@ void	free_node(void *content)
 	t_node	*node;
 
 	node = content;
-    if (node->inputfile != STDIN_FILENO)
+	if (node->inputfile != STDIN_FILENO)
 		close(node->inputfile);
 	if (node->outputfile != STDOUT_FILENO)
 		close(node->outputfile);
@@ -48,7 +48,8 @@ void	free_node(void *content)
 	free(node);
 }
 
-static t_node	*choose_redirection(t_node *node, char **trimmed, int *i, char **args)
+static t_node	*choose_redirection(t_node *node, char **trimmed, \
+	int *i, char **args)
 {
 	if (trimmed[*i])
 	{
@@ -90,7 +91,8 @@ t_list	*fill_nodes(char **args, int i)
 			ft_lstadd_back(&cmds[0], ft_lstnew(initialise_node()));
 			cmds[1] = ft_lstlast(cmds[0]);
 		}
-		cmds[1]->content = choose_redirection(cmds[1]->content, trimmed, &i, args);
+		cmds[1]->content = choose_redirection(cmds[1]->content, \
+			trimmed, &i, args);
 		if (i < 0)
 			return (stop_fill(cmds[0], args, trimmed));
 		if (!args[i])

@@ -29,8 +29,8 @@
 # include <signal.h>
 # include <fcntl.h>
 # include <dirent.h>
-# include "/Users/iczarnie/goinfre/.brew/Cellar/readline/8.2.1/include/readline/readline.h"
-# include "/Users/iczarnie/goinfre/.brew/Cellar/readline/8.2.1/include/readline/history.h"
+# include "/Users/abartell/goinfre/.brew/Cellar/readline/8.2.1/include/readline/readline.h"
+# include "/Users/abartell/goinfre/.brew/Cellar/readline/8.2.1/include/readline/history.h"
 
 # define READ_END 0
 # define WRITE_END 1
@@ -172,7 +172,16 @@ t_node			*get_infile2(t_node *node, char **args, int *i);
 //*********************************************************//
 //**                PULLCMD.C                           **//
 
-void	get_cmd(t_prompt *prompt, t_list *cmd, char **s, char *path);
-void	*ex_nocmd(t_prompt *prompt, t_list *cmd);
+void			get_cmd(t_prompt *prompt, t_list *cmd, char **s, char *path);
+void			*ex_nocmd(t_prompt *prompt, t_list *cmd);
+
+//*********************************************************//
+//**                PULLCMD.C                           **//
+
+//*********************************************************//
+//**                EXPORTUNSET.C                       **//
+
+int				export(t_prompt *prompt);
+int				unset(t_prompt *prompt);
 
 #endif

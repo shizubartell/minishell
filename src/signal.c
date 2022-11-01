@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:38:27 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/14 13:49:50 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/01 14:43:30 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 // status = 128 + SIGINT => simplified representation of exit status after
 // the last input died of SIGINT
 
-void    handle_sigint(int sig)
+void	handle_sigint(int sig)
 {
-    if (sig == SIGINT)
-    {
-        status = 130;
-        ioctl(STDIN_FILENO, TIOCSTI, "\n");
-        rl_replace_line("", 0);
-        rl_on_new_line();
-    }
+	if (sig == SIGINT)
+	{
+		status = 130;
+		ioctl(STDIN_FILENO, TIOCSTI, "\n");
+		rl_replace_line("", 0);
+		rl_on_new_line();
+	}
 }
