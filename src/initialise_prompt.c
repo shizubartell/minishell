@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise_prompt.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:49:37 by iczarnie          #+#    #+#             */
-/*   Updated: 2022/10/14 14:39:28 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/01 11:17:30 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char **set_env_value(char *var, char *value, char **envp, int n)
 }
 
 //finds and sets if there are none PWD, PATH and SHLVL in our envp
-static t_prompt initialise_values(t_prompt prompt, char **argv)
+static t_prompt initialise_values(t_prompt prompt)
 {
     char        *str;
     char        *num;
@@ -86,13 +86,13 @@ static t_prompt initialise_values(t_prompt prompt, char **argv)
 
 //returns first prompt enviromemnt, with a copy of **envp
 //calls initialisation of values
-t_prompt initialise_prompt(char **argv, char **envp)
+t_prompt initialise_prompt(char **envp)
 {
     t_prompt    prompt;
 
     prompt.cmds = NULL;
     prompt.envp = matrix_duplicate(envp);
-    prompt = initialise_values(prompt, argv);
+    prompt = initialise_values(prompt);
     return(prompt);
 }
 
@@ -110,7 +110,7 @@ int strchr_int(const char *s, int c)
 		return (-1);
 	while (s[i] != '\0')
 	{
-		if (s[i] == c_ui)
+		if ((unsigned char)s[i] == c_ui)
 			return (i);
 		i++;
 	}

@@ -102,7 +102,7 @@ void			handle_sigint(int sig);
 //*********************************************************//
 //**                INITIALISE_PROMPT.C                  **//
 
-t_prompt        initialise_prompt(char **argv, char **envp);
+t_prompt        initialise_prompt(char **envp);
 char            **set_env_value(char *var, char *value, char **envp, int n);
 char            *get_env_value(char *var, char **envp, int n);
 int				strchr_int(const char *s, int c);
@@ -152,7 +152,7 @@ t_node			*get_infile1(t_node *node, char **args, int *i);
 //*********************************************************//
 //**                EXECUTION.C                         **//
 
-void			child_builtins(t_prompt *prompt, t_node *n, int i, t_list *cmd);
+void			child_builtins(t_prompt *prompt, t_node *n, t_list *cmd);
 void			*child_proc(t_prompt *s_prompt, t_list *cmd, int fd[2]);
 void			fork_execution(t_prompt *prompt, t_list *cmd, int fd[2]);
 void			*fork_checker(t_prompt *prompt, t_list *cmd, int fd[2]);

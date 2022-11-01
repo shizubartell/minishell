@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 19:18:41 by abartell          #+#    #+#             */
-/*   Updated: 2022/11/01 11:02:46 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/01 11:22:16 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	*child_redirection(t_list *cmd, int fd[2])
 //SIG_IGN to ignore the signal in the process(?)
 //execve is coming from the unistd.h lib and is used to replace 
 //the whole currently running process in the child
-void	child_builtins(t_prompt *prompt, t_node *n, int i, t_list *cmd)
+void	child_builtins(t_prompt *prompt, t_node *n, t_list *cmd)
 {
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
@@ -70,7 +70,7 @@ void	*child_proc(t_prompt *prompt, t_list *cmd, int fd[2])
 		i = ft_strlen(*n->full_cmd);
 	child_redirection(cmd, fd);
 	close(fd[READ_END]);
-	child_builtins(prompt, n, i, cmd);
+	child_builtins(prompt, n, cmd);
 	ft_lstclear(&prompt->cmds, free_node);
 	exit(status);
 }

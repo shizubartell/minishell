@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:06:08 by abartell          #+#    #+#             */
-/*   Updated: 2022/10/14 15:52:03 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/01 11:20:53 by iczarnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int main(int argc, char **argv, char **envp)
     char        *out;
     t_prompt initial;
 
-    initial = initialise_prompt(argv, envp);
+    initial = initialise_prompt(envp);
     while (argv && argc)
 	{
 		signal(SIGINT, handle_sigint);
