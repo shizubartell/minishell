@@ -27,7 +27,7 @@ SRCS = src/main.c \
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -Werror
 RM =  rm -rf
 
 

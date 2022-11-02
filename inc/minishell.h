@@ -118,6 +118,7 @@ char			*expanding_vars(char *str, int i, int qs[2], t_prompt *get);
 //**                TRIMMING_FOR_NODES.C                **//
 
 char			*trim_argument(char const *arg, int squotes, int dquotes);
+char			**args_trimming(char **args);
 
 //*********************************************************//
 //**                NODE_HELPER.C                       **//
@@ -184,6 +185,7 @@ int				unset(t_prompt *prompt);
 //**                CMDCHOP.C                           **//
 
 char			**command_chop(char const *s, char *batch);
+char			**subcmd_chop(char const *s, char *set);
 
 //*********************************************************//
 //**                PARSER.C                            **//
