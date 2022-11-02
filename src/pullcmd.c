@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 07:02:43 by abartell          #+#    #+#             */
-/*   Updated: 2022/11/01 14:29:21 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/02 13:45:39 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,18 +99,18 @@ void	*ex_nocmd(t_prompt *prompt, t_list *cmd)
 	int		fd[2];
 
 	get_cmd(prompt, cmd, NULL, NULL);
-	if (!fork_checker(prompt, cmd, fd))
-		return (NULL);
 	if (pipe(fd) == -1)
 		return (errormsg(PIPERR, NULL, 1));
+	if (!fork_checker(prompt, cmd, fd))
+		return (NULL);
 	close(fd[WRITE_END]);
 	if (cmd->next && !((t_node *)cmd->next->content)->inputfile)
 		((t_node *)cmd->next->content)->inputfile = fd[READ_END];
 	else
 		close(fd[READ_END]);
-	if (((t_node *)cmd->content)->outputfile > 2)
-		close(((t_node *)cmd->content)->outputfile);
 	if (((t_node *)cmd->content)->inputfile > 2)
 		close(((t_node *)cmd->content)->inputfile);
+	if (((t_node *)cmd->content)->outputfile > 2)
+		close(((t_node *)cmd->content)->outputfile);
 	return (NULL);
 }

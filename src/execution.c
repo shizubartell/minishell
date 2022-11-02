@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 19:18:41 by abartell          #+#    #+#             */
-/*   Updated: 2022/11/02 10:20:40 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/02 13:48:03 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ static void	*child_redirection(t_list *cmd, int fd[2])
 	t_node	*node;
 
 	node = cmd->content;
-	if (node->outputfile != STDOUT_FILENO)
-	{
-		if (dup2(node->outputfile, STDOUT_FILENO) == -1)
-			return (errormsg(DUPFAIL, NULL, 1));
-		close(node->outputfile);
-	}
 	if (node->inputfile != STDIN_FILENO)
 	{
 		if (dup2(node->inputfile, STDIN_FILENO) == -1)
 			return (errormsg(DUPFAIL, NULL, 1));
 		close(node->inputfile);
+	}
+	if (node->outputfile != STDOUT_FILENO)
+	{
+		if (dup2(node->outputfile, STDOUT_FILENO) == -1)
+			return (errormsg(DUPFAIL, NULL, 1));
+		close(node->outputfile);
 	}
 	else if (cmd->next && dup2(fd[WRITE_END], STDOUT_FILENO) == -1)
 		return (errormsg(DUPFAIL, NULL, 1));
