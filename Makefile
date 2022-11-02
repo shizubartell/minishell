@@ -43,7 +43,7 @@ endif
 all : $(NAME)
 
 $(NAME) : $(OBJS) $(LIBFT)
-		$(CC) $(CFLAGS) -lreadline -lncurses $^ -o $(NAME)  -I $(INCDIR) -lreadline -fsanitize=address
+		$(CC) $(CFLAGS) -lreadline -lncurses $^ -o $(NAME)  -I $(INCDIR) -lreadline
 
 %.o:%.c $(INC)/minishell.h
 	$(CC) $(CFLAGS) -I $(INC) -c $< -o $@ -I $(INCDIR) -lreadline

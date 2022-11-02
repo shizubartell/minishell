@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 10:51:39 by abartell          #+#    #+#             */
-/*   Updated: 2022/11/02 11:10:52 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/02 14:37:09 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ static void	*parsing(char **args, t_prompt *p)
 	status = builtin_handler(p, p->cmds, &exit, 0);
 	while (i-- > 0)
 		waitpid(-1, &status, 0);
-	if (status > 255)
-		status = status / 255;
 	if (!exit && status == 13)
 		status =  0;
+	if (status > 255)
+		status = status / 255;
 	if (args && exit)
 	{
 		ft_lstclear(&p->cmds, free_node);
