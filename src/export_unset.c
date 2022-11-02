@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 15:34:09 by iczarnie          #+#    #+#             */
-/*   Updated: 2022/11/01 14:06:41 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/02 10:21:35 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	finding_env_var(char *argv, char **envp, int array[2])
 	int	pos;
 
 	array[1] = 0;
-	pos = ft_strchr_i(argv, '=');
+	pos = strchr_int(argv, '=');
 	if (pos == -1)
 		return (-1);
 	while (envp[array[1]])

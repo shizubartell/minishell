@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 22:42:17 by abartell          #+#    #+#             */
-/*   Updated: 2022/11/01 15:29:51 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/02 10:42:12 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,39 @@ int	builtins(t_node *node)
 		return (1);
 	if (!ft_strncmp(*node->full_cmd, "cd", i) && i == 2)
 		return (1);
+	if (!ft_strncmp(*node->full_cmd, "export", i) && i == 6)
+		return (1);
+	if (!ft_strncmp(*node->full_cmd, "unset", i) && i == 5)
+		return (1);
 	return (0);
+}
+
+//handles all the builtins
+int	builtin_handler(t_prompt *prompt, t_list *cmd, int *exit, int n)
+{
+	char	**i;
+	
+	while (cmd)
+	{
+		i = ((t_node *)cmd->content)->full_cmd;
+		n = 0;
+		if (i)
+			n = ft_strlen(*i);
+		if (n && !ft_strncmp(*i, "exit", n) && n == 4)
+			status = exitpath(cmd, exit);
+		if (!cmd->next && i && !ft_strncmp(*i, "cd", n) && n == 2)
+			status = cding(prompt);
+		else if (!cmd->next && i && !ft_strncmp(*i, "export", n) && n == 6)
+			status = export(prompt);
+		else if (!cmd->next && i && !ft_strncmp(*i, "unset", n) && n == 5)
+			status = unset(prompt);
+		else
+		{
+			signal(SIGINT, SIG_IGN);
+			signal(SIGQUIT, SIG_IGN);
+			ex_nocmd(prompt, cmd);
+		}
+		cmd = cmd->next;
+	}
+	return (status);
 }

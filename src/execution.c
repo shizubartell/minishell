@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 19:18:41 by abartell          #+#    #+#             */
-/*   Updated: 2022/11/01 15:37:50 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/02 10:20:40 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,23 @@ static void	*child_redirection(t_list *cmd, int fd[2])
 //SIG_IGN to ignore the signal in the process(?)
 //execve is coming from the unistd.h lib and is used to replace 
 //the whole currently running process in the child
-void	child_builtins(t_prompt *prompt, t_node *n, t_list *cmd)
+void	child_builtins(t_prompt *prompt, t_node *n, int i, t_list *cmd)
 {
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 	if (!builtins(n) && n->full_cmd)
 		execve(n->full_path, n->full_cmd, prompt->envp);
 	else if (builtins(n) && n->full_cmd && \
-		!ft_strncmp(*n->full_cmd, "env", 1) && 1 == 3)
+		!ft_strncmp(*n->full_cmd, "env", i) && i == 3)
 	{
 		matrix_to_fd(prompt->envp, 1, 1);
 		status = 0;
 	}
 	else if (builtins(n) && n->full_cmd && \
-		!ft_strncmp(*n->full_cmd, "echo", 1) && 1 == 4)
+		!ft_strncmp(*n->full_cmd, "echo", i) && i == 4)
 		status = echopath(cmd);
-	else if (n->full_cmd && !ft_strncmp(*n->full_cmd, "pwd", 1) \
-		&& 1 == 3)
+	else if (n->full_cmd && !ft_strncmp(*n->full_cmd, "pwd", i) \
+		&& i == 3)
 		status = pwdpath();
 }
 
@@ -70,7 +70,7 @@ void	*child_proc(t_prompt *prompt, t_list *cmd, int fd[2])
 		i = ft_strlen(*n->full_cmd);
 	child_redirection(cmd, fd);
 	close(fd[READ_END]);
-	child_builtins(prompt, n, cmd);
+	child_builtins(prompt, n, i, cmd);
 	ft_lstclear(&prompt->cmds, free_node);
 	exit(status);
 }

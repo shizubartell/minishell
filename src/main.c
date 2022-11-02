@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iczarnie <iczarnie@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:06:08 by abartell          #+#    #+#             */
-/*   Updated: 2022/11/01 11:20:53 by iczarnie         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:07:51 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,6 @@ static char *generate_prompt_message(void)
 	free(temp[1]);
 	return(temp[0]);	
 }
-
-static void	*check_args(char *out, t_prompt *p)
-{
-	if (!out)
-	{
-		printf("exit\n");
-		return (NULL);
-	}
-}	
 
 int main(int argc, char **argv, char **envp)
 {
@@ -54,5 +45,5 @@ int main(int argc, char **argv, char **envp)
 		if (!check_args(out, &initial))
 			break;
 	}
-	exit(0);
+	exit(status);
 }

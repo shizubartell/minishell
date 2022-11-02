@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:14:53 by abartell          #+#    #+#             */
-/*   Updated: 2022/11/01 15:30:57 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:14:05 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void	*errormsg(int type, char *var, int error)
 		ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
 	else if (type == PIPERR)
 		ft_putstr_fd("minishell: error creating pipe\n", 2);
+	else if (type == QUOTE)
+	ft_putstr_fd("minishell: error while looking for matching quote\n", 2);
 	ft_putendl_fd(var, 2);
 	return (NULL);
 }

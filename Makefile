@@ -24,6 +24,7 @@ SRCS = src/main.c \
 		src/parser.c \
 		src/export_unset.c
 
+
 OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -Wall -Wextra
@@ -32,21 +33,17 @@ RM =  rm -rf
 
 UNAME := $(shell uname -s)
 
-# ifeq ($(UNAME) , Linux)
-# 	INCDIR := -L/usr/local/lib -I/usr/local/include 
+ifeq ($(UNAME) , Linux)
+	INCDIR := -L/usr/local/lib -I/usr/local/include 
 
-# else
-# 	INCDIR := -I ~/goinfre/.brew/opt/readline/include -L ~/goinfre/.brew/opt/readline/lib
-# endif
-
-$(NAME): $(OBJS)
-		make -C libft
-		$(CC) $(OBJS) -Llibft -lft -I ~/goinfre/.brew/opt/readline/include/ -L ~/goinfre/.brew/opt/readline/lib/ -lreadline -o $(NAME) -fsanitize=address
+else
+	INCDIR := -I ~/goinfre/.brew/opt/readline/include -L ~/goinfre/.brew/opt/readline/lib
+endif
 
 all : $(NAME)
 
-# $(NAME) : $(OBJS) $(LIBFT)
-# 		$(CC) $(CFLAGS) -lreadline -lncurses $^ -o $(NAME)  -I $(INCDIR) -lreadline -fsanitize=address
+$(NAME) : $(OBJS) $(LIBFT)
+		$(CC) $(CFLAGS) -lreadline -lncurses $^ -o $(NAME)  -I $(INCDIR) -lreadline -fsanitize=address
 
 %.o:%.c $(INC)/minishell.h
 	$(CC) $(CFLAGS) -I $(INC) -c $< -o $@ -I $(INCDIR) -lreadline
