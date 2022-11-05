@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 10:51:39 by abartell          #+#    #+#             */
-/*   Updated: 2022/11/02 14:37:09 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/05 21:10:14 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	*parsing(char **args, t_prompt *p)
 {
 	int	exit;
 	int	i;
-	
+
 	exit = 0;
 	p->cmds = fill_nodes(splitter(args, p), -1);
 	if (!p->cmds)
@@ -59,7 +59,7 @@ static void	*parsing(char **args, t_prompt *p)
 	while (i-- > 0)
 		waitpid(-1, &status, 0);
 	if (!exit && status == 13)
-		status =  0;
+		status = 0;
 	if (status > 255)
 		status = status / 255;
 	if (args && exit)
@@ -74,7 +74,7 @@ void	*check_args(char *out, t_prompt *p)
 {
 	char	**i;
 	t_node	*node;
-	
+
 	if (!out)
 	{
 		printf("exit\n");
@@ -92,9 +92,9 @@ void	*check_args(char *out, t_prompt *p)
 	if (p && p->cmds)
 		node = p->cmds->content;
 	if (p && p->cmds && node && node->full_cmd && listsize(p->cmds) == 1)
-		p->envp = set_env_value("_", node->full_cmd[matrixlength(node->full_cmd) - 1], \
-			p->envp, 1);
+		p->envp = set_env_value("_", node->full_cmd \
+			[matrixlength(node->full_cmd) - 1], p->envp, 1);
 	if (p && p->cmds)
 		ft_lstclear(&p->cmds, free_node);
 	return (p);
-}	
+}

@@ -36,7 +36,7 @@
 //*********************************************************//
 //**                GLOBAL VARIABLE                     **//
 
-int				status;     
+int			g_status;
 
 //*********************************************************//
 //**                STRUCTURES                          **//
@@ -52,11 +52,11 @@ typedef struct s_node
 {
 	int		inputfile;
 	int		outputfile;
-    char	**full_cmd;
+	char	**full_cmd;
 	char	*full_path;
 }			t_node;
 
-enum	error_msg
+enum	e_error_msg
 {
 	NODIR = 1,
 	NOT_DIR = 2,
@@ -82,18 +82,18 @@ int				main(int argc, char **argv, char **envp);
 //*********************************************************//
 //**                2DARRAY.C                           **//
 
-int             matrixlength(char **array);
-char            **addrowmatrix(char **input, char *str);
-int             matrix_to_fd(char **array, int line, int fd);
-int             str_to_fd(char *s, int fd);
-int             strnl_to_fd(char *s, int fd);
+int				matrixlength(char **array);
+char			**addrowmatrix(char **input, char *str);
+int				matrix_to_fd(char **array, int line, int fd);
+int				str_to_fd(char *s, int fd);
+int				strnl_to_fd(char *s, int fd);
 
 //*********************************************************//
 //**                2DARRAY2.C                          **//
 
-char            **matrix_duplicate(char **array);
-void            free_matrix(char ***array);
-char            **replace_matrixline(char ***high, char **low, int c);
+char			**matrix_duplicate(char **array);
+void			free_matrix(char ***array);
+char			**replace_matrixline(char ***high, char **low, int c);
 
 //*********************************************************//
 //**                SIGNAL.C                            **//
@@ -103,9 +103,9 @@ void			handle_sigint(int sig);
 //*********************************************************//
 //**                INITIALISE_PROMPT.C                  **//
 
-t_prompt        initialise_prompt(char **envp);
-char            **set_env_value(char *var, char *value, char **envp, int n);
-char            *get_env_value(char *var, char **envp, int n);
+t_prompt		initialise_prompt(char **envp);
+char			**set_env_value(char *var, char *value, char **envp, int n);
+char			*get_env_value(char *var, char **envp, int n);
 int				strchr_int(const char *s, int c);
 
 //*********************************************************//
@@ -162,7 +162,8 @@ void			*fork_checker(t_prompt *prompt, t_list *cmd, int fd[2]);
 //**                BUILTINS.C                          **//
 
 int				builtins(t_node *node);
-int				builtin_handler(t_prompt *prompt, t_list *cmd, int *exit, int n);
+int				builtin_handler(t_prompt *prompt, \
+					t_list *cmd, int *exit, int n);
 
 //*********************************************************//
 //**                HEREDOC.C                           **//

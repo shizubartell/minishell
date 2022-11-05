@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:49:37 by iczarnie          #+#    #+#             */
-/*   Updated: 2022/11/02 14:44:41 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/05 21:23:11 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ t_prompt	initialise_prompt(char **envp)
 
 	prompt.cmds = NULL;
 	prompt.envp = matrix_duplicate(envp);
-	status = 0;
+	g_status = 0;
 	prompt = initialise_values(prompt);
 	return (prompt);
 }

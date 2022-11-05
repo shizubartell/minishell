@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 22:42:17 by abartell          #+#    #+#             */
-/*   Updated: 2022/11/02 10:42:12 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/05 21:06:57 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	builtins(t_node *node)
 int	builtin_handler(t_prompt *prompt, t_list *cmd, int *exit, int n)
 {
 	char	**i;
-	
+
 	while (cmd)
 	{
 		i = ((t_node *)cmd->content)->full_cmd;

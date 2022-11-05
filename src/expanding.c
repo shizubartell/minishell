@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:04:48 by abartell          #+#    #+#             */
-/*   Updated: 2022/11/02 14:54:28 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/05 21:23:11 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ char	*pathexpander(char *str, int i, int qs[2], char *vars)
 static char	*vars_substring(char *str, int i, t_prompt *get)
 {
 	char	*add;
+	char	*add2;
 	char	*path;
 	char	*vars;
 	int		pos;
@@ -80,14 +81,14 @@ static char	*vars_substring(char *str, int i, t_prompt *get)
 	if (!vars && str[i] == '$')
 		vars = ft_itoa(get->pid);
 	else if (!vars && str[i] == '?')
-		vars = ft_itoa(status);
+		vars = ft_itoa(g_status);
 	path = ft_strjoin(add, vars);
+	add2 = ft_strjoin(path, &str[i + pos]);
 	free(add);
-	add = ft_strjoin(path, &str[i + pos]);
 	free(str);
 	free(vars);
 	free(path);
-	return (add);
+	return (add2);
 }
 
 //expands enviroment variables in a string if not in quotes
