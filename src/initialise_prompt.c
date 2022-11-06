@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:49:37 by iczarnie          #+#    #+#             */
-/*   Updated: 2022/11/05 21:23:11 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/06 16:55:47 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,34 +33,6 @@ char	*get_env_value(char *var, char **envp, int n)
 //sets a value in envp = just the value if 
 //that thing was in envp before, or the whole line 
 //if there was nothing like that before
-// char	**set_env_value(char *var, char *value, char **envp, int n)
-// {
-// 	int		i[2];
-// 	char	*temp[2];
-
-// 	if (n < 0)
-// 		ft_strlen(var);
-// 	i[0] = 0;
-// 	temp[0] = ft_strjoin(var, "=");
-// 	temp[1] = ft_strjoin(temp[0], value);
-// 	free(temp[0]);
-// 	while (!ft_strchr(var, '=') && envp && envp[++i[0]])
-// 	{
-// 		i[1] = strchr_int(envp[i[0]], '=');
-// 		if (!ft_strncmp(envp[i[0]], var, i[1]))
-// 		{
-// 			temp[0] = envp[i[0]];
-// 			envp[i[0]] = temp[1];
-// 			free(temp[0]);
-// 			return (envp);
-// 		}
-// 		i[0]++;
-// 	}
-// 	envp = addrowmatrix(envp, temp[1]);
-// 	free(temp[1]);
-// 	return (envp);
-// }
-
 char	**set_env_value(char *var, char *value, char **envp, int n)
 {
 	int		i[2];

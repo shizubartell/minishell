@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 09:40:42 by iczarnie          #+#    #+#             */
-/*   Updated: 2022/11/01 14:42:27 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/06 17:02:20 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	error_in_redirections(int *i, int file_descriptor)
 	if (file_descriptor != -1)
 	{
 		ft_putendl_fd(nl, 2);
-		status = 2;
+		g_status = 2;
 	}
 	else
-		status = 1;
+		g_status = 1;
 }
 
 // > condition, if that is possible creates a file (every time new)

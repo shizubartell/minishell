@@ -17,7 +17,7 @@ static char	*combining_strings(char *str[4], size_t len)
 {
 	char	*temp;
 
-	while (status != 130 && (!str[0] || ft_strncmp(str[0], str[2], len) \
+	while (g_status != 130 && (!str[0] || ft_strncmp(str[0], str[2], len) \
 		|| ft_strlen(str[2]) != len))
 	{
 		temp = str[1];
@@ -44,7 +44,7 @@ static int	here_doc(char *str[4])
 {
 	int		fd[2];
 
-	status = 0;
+	g_status = 0;
 	if (pipe(fd) == -1)
 	{
 		errormsg(PIPERR, NULL, 1);
@@ -54,7 +54,7 @@ static int	here_doc(char *str[4])
 	write(fd[WRITE_END], str[1], ft_strlen(str[1]));
 	free(str[1]);
 	close(fd[WRITE_END]);
-	if (status == 130)
+	if (g_status == 130)
 	{
 		close(fd[READ_END]);
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:06:08 by abartell          #+#    #+#             */
-/*   Updated: 2022/11/05 21:06:35 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/06 17:00:33 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ int	main(int argc, char **argv, char **envp)
 		if (!check_args(out, &initial))
 			break ;
 	}
-	exit(status);
+	exit(g_status);
 }

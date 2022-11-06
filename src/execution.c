@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 19:18:41 by abartell          #+#    #+#             */
-/*   Updated: 2022/11/02 13:48:03 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/06 17:43:43 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,27 @@ static void	*child_redirection(t_list *cmd, int fd[2])
 }
 
 //executing commands inside the child process
-//SIG_IGN to ignore the signal in the process(?)
+//SIG_IGN to ignore the signal in the process
 //execve is coming from the unistd.h lib and is used to replace 
 //the whole currently running process in the child
 void	child_builtins(t_prompt *prompt, t_node *n, int i, t_list *cmd)
 {
-	signal(SIGINT, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	if (!builtins(n) && n->full_cmd)
 		execve(n->full_path, n->full_cmd, prompt->envp);
 	else if (builtins(n) && n->full_cmd && \
 		!ft_strncmp(*n->full_cmd, "env", i) && i == 3)
 	{
 		matrix_to_fd(prompt->envp, 1, 1);
-		status = 0;
+		g_status = 0;
 	}
 	else if (builtins(n) && n->full_cmd && \
 		!ft_strncmp(*n->full_cmd, "echo", i) && i == 4)
-		status = echopath(cmd);
+		g_status = echopath(cmd);
 	else if (n->full_cmd && !ft_strncmp(*n->full_cmd, "pwd", i) \
 		&& i == 3)
-		status = pwdpath();
+		g_status = pwdpath();
 }
 
 void	*child_proc(t_prompt *prompt, t_list *cmd, int fd[2])
@@ -72,7 +72,7 @@ void	*child_proc(t_prompt *prompt, t_list *cmd, int fd[2])
 	close(fd[READ_END]);
 	child_builtins(prompt, n, i, cmd);
 	ft_lstclear(&prompt->cmds, free_node);
-	exit(status);
+	exit(g_status);
 }
 
 void	fork_execution(t_prompt *prompt, t_list *cmd, int fd[2])
@@ -107,9 +107,9 @@ void	*fork_checker(t_prompt *prompt, t_list *cmd, int fd[2])
 		fork_execution(prompt, cmd, fd);
 	else if (!builtins(n) && ((n->full_path && \
 		!access(n->full_path, F_OK)) || dir))
-		status = 126;
+		g_status = 126;
 	else if (!builtins(n) && n->full_cmd)
-		status = 127;
+		g_status = 127;
 	if (dir)
 		closedir(dir);
 	return ("");

@@ -6,7 +6,7 @@
 /*   By: abartell <abartell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 22:42:17 by abartell          #+#    #+#             */
-/*   Updated: 2022/11/05 21:06:57 by abartell         ###   ########.fr       */
+/*   Updated: 2022/11/06 16:57:30 by abartell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ int	builtin_handler(t_prompt *prompt, t_list *cmd, int *exit, int n)
 		if (i)
 			n = ft_strlen(*i);
 		if (n && !ft_strncmp(*i, "exit", n) && n == 4)
-			status = exitpath(cmd, exit);
+			g_status = exitpath(cmd, exit);
 		if (!cmd->next && i && !ft_strncmp(*i, "cd", n) && n == 2)
-			status = cding(prompt);
+			g_status = cding(prompt);
 		else if (!cmd->next && i && !ft_strncmp(*i, "export", n) && n == 6)
-			status = export(prompt);
+			g_status = export(prompt);
 		else if (!cmd->next && i && !ft_strncmp(*i, "unset", n) && n == 5)
-			status = unset(prompt);
+			g_status = unset(prompt);
 		else
 		{
 			signal(SIGINT, SIG_IGN);
@@ -67,5 +67,5 @@ int	builtin_handler(t_prompt *prompt, t_list *cmd, int *exit, int n)
 		}
 		cmd = cmd->next;
 	}
-	return (status);
+	return (g_status);
 }
